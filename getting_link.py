@@ -64,5 +64,23 @@ def getting_company_reviews_urls_bs(companies):
     
     return df
 
+## Code to remove annoying login overlay 
+# driver.execute_script("""
+# javascript:(function(){
+#   document.getElementsByClassName('hardsellOverlay')[0].remove();
+#   document.getElementsByTagName("body")[0].style.overflow = "scroll";
+#   let style = document.createElement('style');
+#   style.innerHTML = `
+#     #LoginModal {
+#       display: none!important;
+#     }
+#   `;
+#   document.head.appendChild(style);
+#   window.addEventListener("scroll", function (event) {
+#     event.stopPropagation();
+#   }, true);
+# })();
+# """)
+
 # Trying 
 df = pd.read_csv('listsp500')
