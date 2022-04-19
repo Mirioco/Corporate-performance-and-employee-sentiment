@@ -23,58 +23,59 @@ def get_sp500():
     print('List of sp500 companies successfully imported')
 
 # Stoxx Europe 600 companies
-#def get_euro600():
+def get_euro600():
     
-# Intiate variables and get chromedriver to the right page
-df = pd.DataFrame({'Name': [], 'Supersector': [], 'Country': [], 'Link': []})
-url = 'https://www.stoxx.com/index-details?symbol=SXXP'
-driver = webdriver.Chrome('/Users/corentin/Documents/chromedriver')
-time.sleep(5)
-driver.get(url)
-components = driver.find_element_by_xpath('//*[@id="portlet_STOXXIndexDetailsportlet_WAR_STOXXIndexDetailsportlet"]/div/div/div/div[2]/div[1]/div/div/ul/li[2]/a')
-components.click()
-print('On components')
-
-# Get the table on the first page
-time.sleep(3)
-page = 1
-soup = BeautifulSoup(driver.page_source, 'lxml')
-table = soup.find('tbody', {'id': 'components-table-body'})
-rows = table.find_all('tr')
-print('Got rows')
-
-# Loop over all the pages
-while page <= 3:
+    # Intiate variables and get chromedriver to the right page
+    df = pd.DataFrame({'name': [], 'supersector': [], 'country': [], 'link': []})
+    url = 'https://www.stoxx.com/index-details?symbol=SXXP'
+    driver = webdriver.Chrome('/Users/corentin/Documents/chromedriver')
+    time.sleep(5)
+    driver.get(url)
+    components = driver.find_element_by_xpath('//*[@id="portlet_STOXXIndexDetailsportlet_WAR_STOXXIndexDetailsportlet"]/div/div/div/div[2]/div[1]/div/div/ul/li[2]/a')
+    components.click()
+    print('On components')
     
-    #Append name, link, supersector and country to df
-    for row in rows:
-        elements = row.find_all('td')
-        name = elements[0].text.strip()
-        link = elements[0].find('input').get('value')
-        supersector = elements[1].text
-        country = elements[2].text
-        df.append({'name': name, 
-                   'supersector': supersector, 
-                   'country': country,
-                   'link': link}, 
-                  ignore_index=True)
-        print(name + 'on page ' + str(page) + ' appended')
-    
-    # Go to the next page
+    # Get the table on the first page
     time.sleep(3)
-    next_page = driver.find_element_by_xpath('//*[@id="paginator"]/div/div/ul/li[4]')
-    next_page.click()
-    page += 1
-    print('Got on page ' + str(page))
-    time.sleep(3)
+    page = 1
     soup = BeautifulSoup(driver.page_source, 'lxml')
     table = soup.find('tbody', {'id': 'components-table-body'})
     rows = table.find_all('tr')
+    print('Got rows')
     
-# Send table to csv
-#pd.to_csv('liststoxx600')
-
-
-get_euro600()
+    # Loop over all the pages
+    while page <= 3:
+        
+        #Append name, link, supersector and country to df
+        for row in rows:
+            elements = row.find_all('td')
+            name = elements[0].text.strip()
+            link = elements[0].find('input').get('value')
+            supersector = elements[1].text
+            country = elements[2].text
+            df = df.append({'name': name, 
+                       'supersector': supersector, 
+                       'country': country,
+                       'link': link}, 
+                      ignore_index=True)
+            print(name)
+        
+        # Go to the next page
+        driver.execute_script('window.scrollTo(0, 3865)')
+        time.sleep(3)
+        next_page = driver.find_element_by_xpath('//*[@id="paginator"]/div/div/ul/li[4]')
+        next_page.click()
+        page += 1
+        print('Got on page ' + str(page))
+        time.sleep(3)
+        soup = BeautifulSoup(driver.page_source, 'lxml')
+        table = soup.find('tbody', {'id': 'components-table-body'})
+    rows = table.find_all('tr')
     
+    return df
+    # Sending df to csv
+    #df.to_csv('liststoxx600')
+    
+listos = get_euro600() 
+
         
