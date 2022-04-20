@@ -19,7 +19,7 @@ def get_sp500():
     url = 'https://en.wikipedia.org/wiki/List_of_S%26P_500_companies'
     tables = pd.read_html(url)
     table = tables[0]
-    table.to_csv('listsp500')
+    table.to_csv('listsp500.csv')
     print('List of sp500 companies successfully imported')
 
 # Stoxx Europe 600 companies
@@ -73,7 +73,7 @@ def get_euro600():
         rows = table.find_all('tr')
     
     # Sending df to csv
-    df.to_csv('liststoxx600')
+    df.to_csv('liststoxx600.csv')
     
 listos = get_euro600() 
 
