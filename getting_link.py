@@ -65,6 +65,7 @@ def getting_company_reviews_urls_bs(companies):
     return df
 
 ## Code to remove annoying login overlay 
+# =============================================================================
 # driver.execute_script("""
 # javascript:(function(){
 #   document.getElementsByClassName('hardsellOverlay')[0].remove();
@@ -81,6 +82,4 @@ def getting_company_reviews_urls_bs(companies):
 #   }, true);
 # })();
 # """)
-
-# Trying 
-df = pd.read_csv('data/liststoxx600.csv')
+# =============================================================================
