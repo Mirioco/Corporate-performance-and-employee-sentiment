@@ -62,6 +62,7 @@ def getting_company_reviews_urls_bs(companies):
         except:
             continue
     
+    df.to_csv('data/company_links.csv')
     return df
 
 ## Code to remove annoying login overlay 
