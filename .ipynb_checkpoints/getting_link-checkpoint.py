@@ -5,7 +5,7 @@ Created on Tue Apr 19 15:06:14 2022
 
 @author: corentin
 """
-# IMports
+# Imports
 from selenium import webdriver
 from bs4 import BeautifulSoup
 from selenium.webdriver.common.keys import Keys
@@ -62,9 +62,11 @@ def getting_company_reviews_urls_bs(companies):
         except:
             continue
     
+    df.to_csv('data/company_links.csv')
     return df
 
 ## Code to remove annoying login overlay 
+# =============================================================================
 # driver.execute_script("""
 # javascript:(function(){
 #   document.getElementsByClassName('hardsellOverlay')[0].remove();
@@ -81,6 +83,4 @@ def getting_company_reviews_urls_bs(companies):
 #   }, true);
 # })();
 # """)
-
-# Trying 
-df = pd.read_csv('listsp500')
+# =============================================================================
