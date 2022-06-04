@@ -5,5 +5,4 @@ datetime
 matplotlib==3.4.3
 nltk==3.6.5
 gensim==4.1.2
-collections
 plotly==5.8.0
