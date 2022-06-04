@@ -1,0 +1,9 @@
+dash==2.4.1
+pandas==1.3.4
+numpy==1.20.3
+datetime
+matplotlib==3.4.3
+nltk==3.6.5
+gensim==4.1.2
+collections
+plotly==5.8.0
