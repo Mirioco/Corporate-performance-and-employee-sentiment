@@ -1,7 +1,6 @@
 import dash
 import pandas as pd
 import numpy as np
-import random
 from datetime import datetime, date
 import matplotlib.pyplot as plt
 import itertools # For slicing dictionaries
