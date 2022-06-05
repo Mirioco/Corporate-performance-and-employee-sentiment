@@ -17,5 +17,3 @@ The next step is cleaning. Indeed the reviews contain stars instead of numbers f
 ### Creating the dashboard:
 The dashboard contains three different visualizations. The dashboard.ipynb takes these visualizations one by one, cleans and formats the data and finally plots them into a dashboard.
 
-## End result:
-Available at: 
